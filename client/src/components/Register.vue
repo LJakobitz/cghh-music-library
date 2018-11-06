@@ -22,23 +22,21 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
   .form-container{
     text-align: left;
     margin-left: 25%;
     margin-right: 25%;
-
-    label{
+  }
+  .form-container label{
       margin-left:25%;
       width:20%;
       float:left;
-    }
+  }
 
-    input{
+  .form-container input{
       width:30%;
       float:left;
-    }
-
   }
 
 </style>
