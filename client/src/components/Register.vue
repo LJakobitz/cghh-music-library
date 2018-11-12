@@ -2,21 +2,30 @@
   <div class="Register">
     <p>REGISTER</p>
     <div class="form-container">
-      <label for="email">EMAIL:</label>
-      <input id="email" type="email"/>
+      <input id="email" type="email" v-model="email" placeholder="email">
       <br>
-      <label for="password">PASSWORD:</label>
-      <input id="password" type="password" />
+      <input id="password" type="password" v-model="password" placeholder="password"/>
+      <button @click="register">Register</button>
     </div>
   </div>
 </template>
 
 <script>
+import authenticationService from '@/services/authenticationService'
 export default {
   name: 'Register',
   data () {
     return {
-      msg: 'HAHHA'
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    async register () {
+      await authenticationService.register({
+        email: this.email,
+        password: this.password
+      })
     }
   }
 }
@@ -28,14 +37,9 @@ export default {
     margin-left: 25%;
     margin-right: 25%;
   }
-  .form-container label{
-      margin-left:25%;
-      width:20%;
-      float:left;
-  }
 
   .form-container input{
-      width:30%;
+      width:100%;
       float:left;
   }
 
