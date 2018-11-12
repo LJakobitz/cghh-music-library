@@ -1,5 +1,8 @@
 const Joi = require('joi')
 
+/**
+ * This Module will have the policies stored to check, whether the input for authentication i.e. email and password are valid
+ */
 module.exports = {
     register (req, res, next){
         const schema = {

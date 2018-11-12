@@ -1,3 +1,6 @@
+/**
+ * This Module stores configurational Data
+ */
 module.exports = {
     port: process.env.PORT || 8081,
     db: {

@@ -1,5 +1,8 @@
 const {User} = require('../models')
 
+/**
+ * On Registration create an Entry in the User-DB
+ */
 module.exports = {
     async register (req, res) {
         try {

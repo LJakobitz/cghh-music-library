@@ -11,6 +11,7 @@ const sequelize = new Sequelize(
     config.db.options
 )
 
+// iterate over every file in 'models' and create databases foreach
 fs
     .readdirSync(__dirname)
     .filter((file) =>
