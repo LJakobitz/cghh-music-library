@@ -5,15 +5,19 @@
         <v-toolbar-title>Register</v-toolbar-title>
       </v-toolbar>
       <div class="pl-4 pr-4 pt-2 pb-2">
-        <v-text-field
-          label="Email"
-          v-model="email"
-        ></v-text-field>
-        <br>
-        <v-text-field
-          label="Password"
-          v-model="password"
-        ></v-text-field>
+        <form name="tab-tracker-form" autocomplete="off">
+          <v-text-field
+            label="Email"
+            v-model="email"
+          ></v-text-field>
+          <br>
+          <v-text-field
+            label="Password"
+            type="password"
+            v-model="password"
+            autocomplete="new-password"
+          ></v-text-field>
+        </form>
         <br>
         <div class="error" v-html="error"/>
         <br>
@@ -40,10 +44,12 @@ export default {
   methods: {
     async register () {
       try {
-        await authenticationService.register({
+        const response = await authenticationService.register({
           email: this.email,
           password: this.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -55,7 +61,7 @@ export default {
 <style lang="css" scoped>
 
 .error {
-  color: red;
+  color: white;
 }
 
 </style>
