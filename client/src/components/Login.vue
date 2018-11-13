@@ -2,7 +2,7 @@
   <v-layout row justify-center>
     <div class="white elevation-2 flex xs12 sm8 md4">
       <v-toolbar flat dense class="indigo darken-2" dark>
-        <v-toolbar-title>Register</v-toolbar-title>
+        <v-toolbar-title>Login</v-toolbar-title>
       </v-toolbar>
       <div class="pl-4 pr-4 pt-2 pb-2">
         <v-text-field
@@ -18,8 +18,8 @@
         <div class="error" v-html="error"/>
         <br>
         <v-btn dark class="indigo darken-2"
-          @click="register">
-          Register
+          @click="login">
+          Login
         </v-btn>
       </div>
     </div>
@@ -29,7 +29,7 @@
 <script>
 import authenticationService from '@/services/authenticationService'
 export default {
-  name: 'Register',
+  name: 'Login',
   data () {
     return {
       email: '',
@@ -38,9 +38,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        await authenticationService.register({
+        await authenticationService.login({
           email: this.email,
           password: this.password
         })
