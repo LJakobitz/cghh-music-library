@@ -1,28 +1,32 @@
 <template>
-  <v-layout row justify-center>
-    <panel title="Register">
-      <form name="tab-tracker-form" autocomplete="off">
-        <v-text-field
-          label="Email"
-          v-model="email"
-        ></v-text-field>
-        <br>
-        <v-text-field
-          label="Password"
-          type="password"
-          v-model="password"
-          autocomplete="new-password"
-        ></v-text-field>
-      </form>
-      <br>
-      <div class="error" v-html="error"/>
-      <br>
-      <v-btn dark class="indigo darken-2"
-        @click="register">
-        Register
-      </v-btn>
-    </panel>
-  </v-layout>
+  <v-container fluid grid-list-md>
+    <v-layout row justify-center>
+      <v-flex xs12 sm6 md4 >
+        <panel title="Register">
+          <form name="tab-tracker-form" autocomplete="off">
+            <v-text-field
+              label="Email"
+              v-model="email"
+            ></v-text-field>
+            <br>
+            <v-text-field
+              label="Password"
+              type="password"
+              v-model="password"
+              autocomplete="new-password"
+            ></v-text-field>
+          </form>
+          <br>
+          <div class="error" v-html="error"/>
+          <br>
+          <v-btn dark class="indigo darken-2"
+            @click="register">
+            Register
+          </v-btn>
+        </panel>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
