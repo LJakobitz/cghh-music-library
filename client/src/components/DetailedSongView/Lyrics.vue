@@ -1,22 +1,18 @@
 <template>
-  <panel title="Tab">
+  <panel title="Lyrics">
     <textarea
       readonly
       multi-line
-      v-model="song.tab">
+      v-model="song.lyrics">
     </textarea>
   </panel>
 </template>
 
 <script>
-import Panel from '@/components/Panel'
 export default {
   props: [
     'song'
-  ],
-  components: {
-    Panel
-  }
+  ]
 }
 </script>
 
