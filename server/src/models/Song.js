@@ -1,5 +1,6 @@
 /**
- * This Module contains the Schema for a User-Database, it will save an email-adress as well as a password
+ * This Module contains the Schema for a Song-Database, it will save an Meta-Data, Albumcovers and Spotify and YouTube IDs
+ *
  */
 module.exports = (sequelize, DataTypes) => {
     const Song = sequelize.define('Song', {

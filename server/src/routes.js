@@ -1,6 +1,7 @@
 const authenticationController = require('./controllers/authenticationController')
 const authenticationControllerPolicy = require('./policies/authenticationControllerPolicy')
 const songsController = require('./controllers/songsController')
+const favoritesController = require('./controllers/favoritesController')
 /**
  * This Module will contain (and export) all the routes for the app
  */
@@ -9,20 +10,19 @@ module.exports = (app) => {
     app.post('/register', 
       authenticationControllerPolicy.register,
       authenticationController.register)
-
     app.post('/login',
       authenticationController.login)
 
     app.get('/songs', 
       songsController.index)
-    
-    app.get('/songs/:songID', 
+    app.get('/songs/:songId', 
       songsController.show)
-
     app.post('/songs', 
       songsController.createSong)
-
-    app.put('/songs/:songID', 
+    app.put('/songs/:songId', 
       songsController.editSong)
+
+    app.get('/favorites', 
+      favoritesController.index)
 }
 

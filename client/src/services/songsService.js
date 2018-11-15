@@ -11,8 +11,8 @@ export default {
   post (song) {
     return api().post('songs', song)
   },
-  show (songID) {
-    return api().get(`songs/${songID}`, songID)
+  show (songId) {
+    return api().get(`songs/${songId}`, songId)
   },
   put (song) {
     return api().put(`songs/${song.id}`, song)

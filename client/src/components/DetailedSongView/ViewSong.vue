@@ -32,8 +32,8 @@ export default {
     }
   },
   async mounted () {
-    const songID = this.$store.state.route.params.songID
-    this.song = (await SongsService.show(songID)).data
+    const songId = this.$store.state.route.params.songId
+    this.song = (await SongsService.show(songId)).data
   },
   components: {
     SongMetadata,

@@ -27,12 +27,12 @@ export default new Router({
       component: Songs
     },
     {
-      path: '/songs/:songID',
+      path: '/songs/:songId',
       name: 'song',
       component: ViewSong
     },
     {
-      path: '/songs/:songID/edit',
+      path: '/songs/:songId/edit',
       name: 'song-edit',
       component: EditSong
     },

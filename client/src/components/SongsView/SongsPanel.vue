@@ -18,7 +18,7 @@
             {{song.album}}
           </div>
           <v-btn dark class="indigo accent-2"
-            :to="{name: 'song', params: {songID: song.id}}">
+            :to="{name: 'song', params: {songId: song.id}}">
             View Details
           </v-btn>
         </v-flex>

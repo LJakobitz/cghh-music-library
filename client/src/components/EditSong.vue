@@ -92,14 +92,14 @@ export default {
         this.error = 'Please fill in all the required fields.'
         return
       }
-      const songID = this.$store.state.route.params.songID
+      const songId = this.$store.state.route.params.songId
       try {
         await SongsService.put(this.song)
         // TODO: GoTo SongView
         this.$router.push({
           name: 'song',
           params: {
-            songID: songID
+            songId: songId
           }
         })
       } catch (err) {
@@ -109,8 +109,8 @@ export default {
   },
   async mounted () {
     try {
-      const songID = this.$store.state.route.params.songID
-      this.song = (await SongsService.show(songID)).data
+      const songId = this.$store.state.route.params.songId
+      this.song = (await SongsService.show(songId)).data
       console.log(this.song)
     } catch (err) {
       console.log(err)

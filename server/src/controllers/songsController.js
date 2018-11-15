@@ -31,7 +31,7 @@ module.exports = {
   },
   async show(req, res) {
     try {
-      const song = await Song.findById(req.params.songID)
+      const song = await Song.findById(req.params.songId)
       res.send(song)
     } catch (err) {
       res.status(500).send({
@@ -53,7 +53,7 @@ module.exports = {
     try {
       const song = await Song.update(req.body, {
         where: {
-          id: req.params.songID
+          id: req.params.songId
         }
       })
       res.send(req.body)
