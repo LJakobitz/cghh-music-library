@@ -1,3 +1,5 @@
+const path = require('path')
+
 /**
  * This Module stores configurational Data
  */
@@ -10,7 +12,7 @@ module.exports = {
         options: {
             dialect: process.env.DIALECT || 'sqlite',
             host: process.env.HOST || 'localhost',
-            storage: './tabtracker.sqlite'
+            storage: path.resolve(__dirname, '../../tabtracker.sqlite')
         }
     },
     authentication: {
