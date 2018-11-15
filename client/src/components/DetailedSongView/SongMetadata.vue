@@ -15,6 +15,16 @@
           :to="{name: 'song-edit', params () { return {songId: song.id}}}">
           Edit Details
         </v-btn>
+        <v-btn v-if="isUserLoggedIn && !favorite" @click="setAsFavorite" fab>
+          <v-icon>
+            favorite_border
+          </v-icon>
+        </v-btn>
+        <v-btn v-if="isUserLoggedIn && favorite" @click="unSetAsFavorite" class="red" fab>
+          <v-icon>
+            favorite
+          </v-icon>
+        </v-btn>
       </v-flex>
       <v-flex xs12 sm12 md6>
         {{song.album}}
@@ -29,28 +39,71 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import favoritesService from '@/services/favoritesService'
 export default {
-  props: [
-    'song'
-  ]
+  props: ['song'],
+  data () {
+    return {
+      favorite: null
+    }
+  },
+  computed: {
+    ...mapState(['isUserLoggedIn'])
+  },
+  watch: {
+    async song () {
+      if (!this.isUserLoggedIn) {
+        return
+      }
+      try {
+        this.favorite = (await favoritesService.index({
+          songId: this.song.id,
+          userId: this.$store.state.user.id
+        })).data
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  },
+  methods: {
+    async setAsFavorite () {
+      try {
+        this.favorite = (await favoritesService.post({
+          songId: this.song.id,
+          userId: this.$store.state.user.id
+        })).data
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async unSetAsFavorite () {
+      try {
+        await favoritesService.delete(this.favorite.id)
+        this.favorite = null
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
 }
 </script>
 
 <style lang="css" scoped>
-  .album-image{
-    width: 65%;
-    margin: 0 auto;
-  }
-  .song-title{
-    font-size: 30px;
-  }
-  .song-artist{
-    font-size: 24px;
-  }
-  .song-album{
-    font-size: 18px;
-  }
-  .tile{
-    height: 405px;;
-  }
+.album-image {
+  width: 65%;
+  margin: 0 auto;
+}
+.song-title {
+  font-size: 30px;
+}
+.song-artist {
+  font-size: 24px;
+}
+.song-album {
+  font-size: 18px;
+}
+.tile {
+  height: 405px;
+}
 </style>

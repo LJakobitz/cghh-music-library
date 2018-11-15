@@ -24,5 +24,9 @@ module.exports = (app) => {
 
     app.get('/favorites', 
       favoritesController.index)
+    app.post('/favorites', 
+      favoritesController.post)
+    app.delete('/favorites/:favoriteId', 
+      favoritesController.delete)
 }
 
