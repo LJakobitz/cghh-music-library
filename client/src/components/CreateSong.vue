@@ -98,7 +98,7 @@ export default {
         await SongsService.post(this.song)
         // TODO: GoTo SongView
         this.$router.push({
-          name: 'home'
+          name: 'songs'
         })
       } catch (err) {
         console.log(err)

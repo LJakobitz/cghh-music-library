@@ -32,5 +32,6 @@ export default {
 }
 .validation-error{
   color:red;
+  font-weight: bold;
 }
 </style>
