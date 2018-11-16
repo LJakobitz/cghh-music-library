@@ -15,13 +15,13 @@
           :to="{name: 'song-edit', params () { return {songId: song.id}}}">
           Edit Details
         </v-btn>
-        <v-btn v-if="isUserLoggedIn && !favorite" @click="setAsFavorite" fab>
-          <v-icon>
+        <v-btn class="indigo accent-2" v-if="isUserLoggedIn && !favorite" @click="setAsFavorite" fab>
+          <v-icon color="grey lighten-2">
             favorite_border
           </v-icon>
         </v-btn>
-        <v-btn v-if="isUserLoggedIn && favorite" @click="unSetAsFavorite" class="red" fab>
-          <v-icon>
+        <v-btn class="indigo accent-2" v-if="isUserLoggedIn && favorite" @click="unSetAsFavorite" fab>
+          <v-icon color="red">
             favorite
           </v-icon>
         </v-btn>
@@ -49,7 +49,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isUserLoggedIn'])
+    ...mapState(['isUserLoggedIn', 'user'])
   },
   watch: {
     async song () {
@@ -57,10 +57,13 @@ export default {
         return
       }
       try {
-        this.favorite = (await favoritesService.index({
+        const favorites = (await favoritesService.index({
           songId: this.song.id,
-          userId: this.$store.state.user.id
+          userId: this.user.id
         })).data
+        if (favorites.length) {
+          this.favorite = favorites[0]
+        }
       } catch (err) {
         console.log(err)
       }
@@ -71,7 +74,7 @@ export default {
       try {
         this.favorite = (await favoritesService.post({
           songId: this.song.id,
-          userId: this.$store.state.user.id
+          userId: this.user.id
         })).data
       } catch (err) {
         console.log(err)

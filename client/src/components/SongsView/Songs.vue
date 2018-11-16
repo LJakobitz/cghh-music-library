@@ -1,6 +1,10 @@
 <template>
-  <v-layout column justify-center>
-    <v-flex xs6>
+  <v-layout row justify-center>
+    <v-flex xs4>
+      <songs-favorites />
+      <songs-recent class="mt-2" />
+    </v-flex>
+    <v-flex xs8 class="ml-2">
       <songs-search-panel />
       <songs-panel class="mt-2"/>
     </v-flex>
@@ -10,11 +14,15 @@
 <script>
 import SongsService from '@/services/songsService'
 import SongsPanel from './SongsPanel'
+import SongsRecent from './SongsRecent'
 import SongsSearchPanel from './SongsSearchPanel'
+import SongsFavorites from './SongsFavorites'
 export default {
   components: {
     SongsPanel,
-    SongsSearchPanel
+    SongsSearchPanel,
+    SongsFavorites,
+    SongsRecent
   },
   data () {
     return {

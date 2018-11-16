@@ -2,6 +2,7 @@ const authenticationController = require('./controllers/authenticationController
 const authenticationControllerPolicy = require('./policies/authenticationControllerPolicy')
 const songsController = require('./controllers/songsController')
 const favoritesController = require('./controllers/favoritesController')
+const historiesController = require('./controllers/historiesController')
 /**
  * This Module will contain (and export) all the routes for the app
  */
@@ -28,5 +29,10 @@ module.exports = (app) => {
       favoritesController.post)
     app.delete('/favorites/:favoriteId', 
       favoritesController.delete)
+
+    app.get('/histories', 
+      historiesController.index)
+    app.post('/histories', 
+      historiesController.post)
 }
 

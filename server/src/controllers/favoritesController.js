@@ -1,18 +1,29 @@
-const { Favorite } = require('../models')
-
+const { Favorite, Song } = require('../models')
+const _ = require('lodash')
 module.exports = {
   async index(req, res) {
     try {
       const {songId, userId} = req.query
-
-      const favorite = await Favorite.findOne({
-        where: {
-          SongId: songId,
-          UserId: userId
-        }
-      })
-
-      res.send(favorite)
+      where = {
+        UserId: userId
+      }
+      if (songId) {
+        where.SongId = songId
+      }
+      const favorites = await Favorite.findAll({
+        where: where,
+        include: [
+          {
+            model: Song
+          }
+        ]
+      }).map(favorite => favorite.toJSON())
+        .map(favorite => _.extend(
+          {},
+          favorite.Song,
+          favorite
+          ))
+      res.send(favorites)
     } catch (error) {
       res.status(500).send({
         error: 'an error has occurred trying to fetch favorite'
