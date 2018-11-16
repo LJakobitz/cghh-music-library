@@ -3,7 +3,8 @@ const _ = require('lodash')
 module.exports = {
   async index(req, res) {
     try {
-      const {songId, userId} = req.query
+      const userId = req.user.id
+      const {songId} = req.query
       where = {
         UserId: userId
       }
@@ -32,7 +33,8 @@ module.exports = {
   },
   async post(req, res) {
     try {
-      const {songId, userId} = req.body.params
+      const userId = req.user.id
+      const {songId} = req.body.params
       const favorite = await Favorite.findOne({
         where: {
           SongId: songId,
@@ -57,8 +59,14 @@ module.exports = {
   },
   async delete(req, res) {
     try {
+      const userId = req.user.id
       const {favoriteId} = req.params
-      const favorite = await Favorite.findById(favoriteId)
+      const favorite = await Favorite.findOne({
+        where: {
+          id: favoriteId,
+          UserId: userId
+        }
+      })
       await favorite.destroy()
       res.send(favorite)
     } catch (error) {

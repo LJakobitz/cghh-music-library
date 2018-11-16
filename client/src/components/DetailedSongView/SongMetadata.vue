@@ -58,8 +58,7 @@ export default {
       }
       try {
         const favorites = (await favoritesService.index({
-          songId: this.song.id,
-          userId: this.user.id
+          songId: this.song.id
         })).data
         if (favorites.length) {
           this.favorite = favorites[0]
@@ -73,8 +72,7 @@ export default {
     async setAsFavorite () {
       try {
         this.favorite = (await favoritesService.post({
-          songId: this.song.id,
-          userId: this.user.id
+          songId: this.song.id
         })).data
       } catch (err) {
         console.log(err)

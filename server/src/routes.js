@@ -3,6 +3,7 @@ const authenticationControllerPolicy = require('./policies/authenticationControl
 const songsController = require('./controllers/songsController')
 const favoritesController = require('./controllers/favoritesController')
 const historiesController = require('./controllers/historiesController')
+const isAuthenticated = require('./policies/isAuthenticated')
 /**
  * This Module will contain (and export) all the routes for the app
  */
@@ -23,11 +24,14 @@ module.exports = (app) => {
     app.put('/songs/:songId', 
       songsController.editSong)
 
-    app.get('/favorites', 
+    app.get('/favorites',
+      isAuthenticated,
       favoritesController.index)
-    app.post('/favorites', 
+    app.post('/favorites',
+      isAuthenticated,
       favoritesController.post)
-    app.delete('/favorites/:favoriteId', 
+    app.delete('/favorites/:favoriteId',
+      isAuthenticated,
       favoritesController.delete)
 
     app.get('/histories', 

@@ -19,7 +19,7 @@ module.exports = {
           history.Song,
           history
         ))
-      res.send(histories)
+      res.send(_.uniqBy(histories, history => history.SongId))
     } catch (error) {
       res.status(500).send({
         error: 'an error has occurred trying to fetch history'
