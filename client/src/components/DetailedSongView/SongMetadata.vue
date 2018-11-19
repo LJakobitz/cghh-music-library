@@ -15,13 +15,13 @@
           :to="{name: 'song-edit', params () { return {songId: song.id}}}">
           Edit Details
         </v-btn>
-        <v-btn class="indigo accent-2" v-if="isUserLoggedIn && !favorite" @click="setAsFavorite" fab>
-          <v-icon color="grey lighten-2">
+        <v-btn class="indigo accent-2" v-if="isUserLoggedIn && !favorite" @click="setAsFavorite" large icon>
+          <v-icon color="grey lighten-2" medium>
             favorite_border
           </v-icon>
         </v-btn>
-        <v-btn class="indigo accent-2" v-if="isUserLoggedIn && favorite" @click="unSetAsFavorite" fab>
-          <v-icon color="red">
+        <v-btn class="indigo accent-2" v-if="isUserLoggedIn && favorite" @click="unSetAsFavorite" large icon>
+          <v-icon color="red" medium>
             favorite
           </v-icon>
         </v-btn>

@@ -1,7 +1,7 @@
 <template>
   <panel title="Songs">
-    <v-btn slot="action" :to="{name: 'songs-create'}" class="indigo accent-2" light small absolute right middle fab>
-      <v-icon>
+    <v-btn slot="action" :to="{name: 'songs-create'}" class="indigo accent-2" dark small absolute right middle icon>
+      <v-icon white>
         add
       </v-icon>
     </v-btn>
