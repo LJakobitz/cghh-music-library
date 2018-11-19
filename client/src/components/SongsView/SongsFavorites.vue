@@ -47,9 +47,7 @@ export default {
   },
   async mounted () {
     if (this.isUserLoggedIn) {
-      this.favorites = (await favoritesService.index({
-        userId: this.user.id
-      })).data
+      this.favorites = (await favoritesService.index()).data
     }
   }
 }

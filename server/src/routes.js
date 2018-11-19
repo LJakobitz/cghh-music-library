@@ -34,9 +34,11 @@ module.exports = (app) => {
       isAuthenticated,
       favoritesController.delete)
 
-    app.get('/histories', 
+    app.get('/histories',
+      isAuthenticated,
       historiesController.index)
-    app.post('/histories', 
+    app.post('/histories',
+      isAuthenticated,
       historiesController.post)
 }
 

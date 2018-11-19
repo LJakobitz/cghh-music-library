@@ -27,7 +27,7 @@ module.exports = {
       res.send(favorites)
     } catch (error) {
       res.status(500).send({
-        error: 'an error has occurred trying to fetch favorite'
+        error: 'An error has occurred trying to fetch favorite'
       })
     }
   },
@@ -43,7 +43,7 @@ module.exports = {
       })
       if (favorite) {
         return res.status(400).send({
-          error: 'song already favorited'
+          error: 'Song already favorited'
         })
       }
       const newFav = await Favorite.create({
@@ -53,7 +53,7 @@ module.exports = {
       res.send(newFav)
     } catch (error) {
       res.status(500).send({
-        error: 'an error has occurred trying to create favorite'
+        error: 'An error has occurred trying to create favorite'
       })
     }
   },
@@ -67,11 +67,16 @@ module.exports = {
           UserId: userId
         }
       })
+      if (!favorite) {
+        return res.status(403).send({
+          error: 'You do not have access to this resource'
+        })
+      }
       await favorite.destroy()
       res.send(favorite)
     } catch (error) {
       res.status(500).send({
-        error: 'an error has occurred trying to delete favorite'
+        error: 'An error has occurred trying to delete favorite'
       })
     }
   }
